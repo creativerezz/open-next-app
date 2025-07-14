@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Zap, Search } from 'lucide-react';
+import { Menu, X, ArrowRight, Zap, Search, Hash } from 'lucide-react';
 import Link from 'next/link';
 
 interface NavItem {
@@ -33,45 +33,55 @@ export default function Header2() {
   }, []);
 
   const containerVariants = {
-    hidden: { opacity: 0, y: -20 },
+    hidden: { opacity: 0, y: -10 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        staggerChildren: 0.1,
+        duration: 0.2,
+        staggerChildren: 0,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: -10 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: -5 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.15 } },
   };
 
   const mobileMenuVariants = {
     closed: {
       opacity: 0,
       x: '100%',
+      transition: {
+        duration: 0.15,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
     },
     open: {
       opacity: 1,
       x: 0,
       transition: {
-        staggerChildren: 0.1,
+        duration: 0.2,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        staggerChildren: 0,
       },
     },
   };
 
   const mobileItemVariants = {
-    closed: { opacity: 0, x: 20 },
-    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: 10 },
+    open: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.1 }
+    },
   };
 
   return (
     <>
       <motion.header
-        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
           isScrolled
             ? 'border-b border-border/50 bg-background/80 shadow-sm backdrop-blur-md'
             : 'bg-transparent'
@@ -86,18 +96,18 @@ export default function Header2() {
               className="flex items-center space-x-3"
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
             >
               <Link href="/" className="flex items-center space-x-3">
                 <div className="relative">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500 via-rose-600 to-rose-700 shadow-lg">
-                    <Zap className="h-5 w-5 text-white" />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 shadow-lg">
+                    <Hash className="h-5 w-5 text-white" />
                   </div>
                   <div className="absolute -right-1 -top-1 h-3 w-3 animate-pulse rounded-full bg-green-400"></div>
                 </div>
                 <div className="flex flex-col">
                   <span className="text-lg font-bold text-foreground">
-                    Acme Inc.
+                    OpenNext
                   </span>
                   <span className="-mt-1 text-xs text-muted-foreground">
                     Build faster
@@ -117,7 +127,7 @@ export default function Header2() {
                 >
                   <Link
                     href={item.href}
-                    className="relative rounded-lg px-4 py-2 text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
+                    className="relative rounded-lg px-4 py-2 text-sm font-medium text-foreground/80 transition-colors duration-150 hover:text-foreground"
                   >
                     {hoveredItem === item.name && (
                       <motion.div
@@ -128,8 +138,9 @@ export default function Header2() {
                         exit={{ opacity: 0 }}
                         transition={{
                           type: 'spring',
-                          stiffness: 400,
-                          damping: 30,
+                          stiffness: 500,
+                          damping: 35,
+                          duration: 0.15,
                         }}
                       />
                     )}
@@ -144,16 +155,17 @@ export default function Header2() {
               variants={itemVariants}
             >
               <motion.button
-                className="rounded-lg p-2 text-muted-foreground transition-colors duration-200 hover:bg-muted hover:text-foreground"
+                className="rounded-lg p-2 text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 600, damping: 30 }}
               >
                 <Search className="h-5 w-5" />
               </motion.button>
 
               <Link
                 href="/login"
-                className="px-4 py-2 text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-foreground"
+                className="px-4 py-2 text-sm font-medium text-foreground/80 transition-colors duration-150 hover:text-foreground"
               >
                 Sign In
               </Link>
@@ -161,10 +173,11 @@ export default function Header2() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 600, damping: 30 }}
               >
                 <Link
                   href="/signup"
-                  className="inline-flex items-center space-x-2 rounded-lg bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-sm transition-all duration-200 hover:bg-foreground/90"
+                  className="inline-flex items-center space-x-2 rounded-lg bg-foreground px-5 py-2.5 text-sm font-medium text-background shadow-sm transition-all duration-150 hover:bg-foreground/90"
                 >
                   <span>Get Started</span>
                   <ArrowRight className="h-4 w-4" />
@@ -173,10 +186,11 @@ export default function Header2() {
             </motion.div>
 
             <motion.button
-              className="rounded-lg p-2 text-foreground transition-colors duration-200 hover:bg-muted lg:hidden"
+              className="rounded-lg p-2 text-foreground transition-colors duration-150 hover:bg-muted lg:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               variants={itemVariants}
               whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 600, damping: 30 }}
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -188,7 +202,7 @@ export default function Header2() {
         </div>
       </motion.header>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isMobileMenuOpen && (
           <>
             <motion.div
@@ -196,6 +210,7 @@ export default function Header2() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
@@ -211,7 +226,7 @@ export default function Header2() {
                     <motion.div key={item.name} variants={mobileItemVariants}>
                       <Link
                         href={item.href}
-                        className="block rounded-lg px-4 py-3 font-medium text-foreground transition-colors duration-200 hover:bg-muted"
+                        className="block rounded-lg px-4 py-3 font-medium text-foreground transition-colors duration-150 hover:bg-muted"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.name}
@@ -226,14 +241,14 @@ export default function Header2() {
                 >
                   <Link
                     href="/login"
-                    className="block w-full rounded-lg py-3 text-center font-medium text-foreground transition-colors duration-200 hover:bg-muted"
+                    className="block w-full rounded-lg py-3 text-center font-medium text-foreground transition-colors duration-150 hover:bg-muted"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Sign In
                   </Link>
                   <Link
                     href="/signup"
-                    className="block w-full rounded-lg bg-foreground py-3 text-center font-medium text-background transition-all duration-200 hover:bg-foreground/90"
+                    className="block w-full rounded-lg bg-foreground py-3 text-center font-medium text-background transition-all duration-150 hover:bg-foreground/90"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Get Started
