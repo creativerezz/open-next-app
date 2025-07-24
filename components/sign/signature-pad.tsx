@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState, forwardRef } from 'react';
+import React, { useRef, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
 import { Trash2, Check } from 'lucide-react';
@@ -15,6 +15,7 @@ interface SignaturePadProps {
 export const SignaturePad = forwardRef<HTMLCanvasElement, SignaturePadProps>(
   ({ onSignature, width = 400, height = 200, className = '' }, ref) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    useImperativeHandle(ref, () => canvasRef.current!);
     const [isDrawing, setIsDrawing] = useState(false);
     const [hasSignature, setHasSignature] = useState(false);
 
