@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, ArrowRight, Sparkles, Hash } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { Dela_Gothic_One } from 'next/font/google';
 import { Heart } from 'lucide-react';
 
 

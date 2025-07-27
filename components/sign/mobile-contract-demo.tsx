@@ -25,10 +25,8 @@ type DemoStep = 'contract' | 'signature' | 'payment' | 'complete';
 
 export function MobileContractDemo({ className = '' }: ContractDemoProps) {
   const [currentStep, setCurrentStep] = useState<DemoStep>('contract');
-  const [signature, setSignature] = useState<string>('');
 
-  const handleSignature = (signatureData: string) => {
-    setSignature(signatureData);
+  const handleSignature = () => {
     setTimeout(() => {
       setCurrentStep('payment');
     }, 1000);
@@ -40,7 +38,6 @@ export function MobileContractDemo({ className = '' }: ContractDemoProps) {
 
   const resetDemo = () => {
     setCurrentStep('contract');
-    setSignature('');
   };
 
   const renderContractStep = () => (

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Zap, Search, Hash } from 'lucide-react';
+import { Menu, X, ArrowRight, Search, Hash } from 'lucide-react';
 import Link from 'next/link';
 
 interface NavItem {
