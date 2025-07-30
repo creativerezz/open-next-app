@@ -134,7 +134,7 @@ export default function MeshyCards() {
           className="relative transform overflow-hidden rounded-2xl bg-gradient-to-br from-green-600 to-green-800 p-6 shadow-lg transition-all duration-300 hover:shadow-xl group-hover:scale-105"
           style={{
             background:
-              'url(https://images.unsplash.com/photo-1635776062127-d379bfcba9f8?w=800&amp;q=80)',
+            'url(https://images.unsplash.com/photo-1635776062360-af423602aff3?w=800&amp;q=80)',
             backgroundSize: 'cover',
           }}
         >

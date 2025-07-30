@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(bun run:*)"
+      "Bash(bun run:*)",
+      "Bash(pkill:*)",
+      "Bash(rm:*)",
+      "Bash(npm run dev:*)",
+      "Bash(bun install:*)",
+      "Bash(wrangler secret put:*)",
+      "Bash(bun:*)",
+      "Bash(npx jsrepo init:*)"
     ],
     "deny": []
   }
